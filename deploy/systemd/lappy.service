@@ -1,0 +1,28 @@
+[Unit]
+Description=Lappy local terminal service
+After=network.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/terminal/Lappy
+ExecStart=/usr/bin/node --env-file-if-exists=/home/terminal/Lappy/.env /home/terminal/Lappy/dist-server/index.js
+Restart=always
+RestartSec=3
+TimeoutStopSec=8
+KillSignal=SIGTERM
+Environment=NODE_ENV=production
+Environment=LAPPY_HOST=127.0.0.1
+Environment=LAPPY_PORT=4318
+Environment=LAPPY_ALLOW_RESTART=true
+Environment=LAPPY_ALLOW_KIOSK_CONTROL=true
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/terminal/.config/lappy
+
+[Install]
+WantedBy=default.target
