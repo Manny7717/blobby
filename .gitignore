@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-server/
+.env
+.env.local
+*.log
+coverage/
+.DS_Store
+recordings/
+captures/
+.venv/
+__pycache__/
+*.pyc
+stt/models/

@@ -1,0 +1,36 @@
+{
+  "name": "blobby-terminal",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:service": "node --env-file-if-exists=.env --import tsx --watch server/index.ts",
+    "build": "vue-tsc --noEmit && vite build && tsc -p server/tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "preview": "vite preview",
+    "start": "node --env-file-if-exists=.env dist-server/index.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.19.0",
+    "@phosphor-icons/vue": "^2.2.1",
+    "espeak-ng": "^1.0.2",
+    "vue": "^3.5.41",
+    "ws": "^8.18.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "happy-dom": "^20.0.8",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.1"
+  }
+}
