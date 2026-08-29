@@ -1,4 +1,4 @@
-# Lappy verification record — 2026-08-25
+# Blobby verification record — 2026-08-25
 
 This record separates what has been exercised on the target Raspberry Pi from
 what still depends on missing hardware, an unavailable model, or an actual
@@ -7,7 +7,7 @@ reboot/offline-boot window.
 ## Passed on the target Pi
 
 - `npm test`: 12 files and 109 tests passed, including the pinned Bloub engine,
-  Lappy interaction reducer, hidden-page animation lifecycle, and gateway stream
+  Blobby interaction reducer, hidden-page animation lifecycle, and gateway stream
   termination/tool-event behavior. Isolated persistence tests prove corrupt JSON
   is backed up and invalid writes create no replacement file. The application
   shell/state switcher mounts under test, and the speech-envelope parser tracks
@@ -76,7 +76,7 @@ reboot/offline-boot window.
 - The browser STT provider is replaceable but is not guaranteed to operate
   offline. A measured local Pi-compatible STT model/provider is still required
   for a fully offline speech-input guarantee.
-- No licensed compatible “Hey Lappy” wake model is installed. The provider
+- No licensed compatible “Hey Blobby” wake model is installed. The provider
   honestly reports `needs-model`; it neither opens the microphone nor fakes wake
   detection. Tap-to-talk remains independent.
 - The real Hermes endpoint did not emit structured tool-call events in the test

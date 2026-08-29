@@ -124,8 +124,8 @@ export class OpenAIHermesAdapter implements HermesAdapter {
         signal: AbortSignal.timeout(5000)
       })
       return response.ok
-        ? { ok: true, message: 'Lappy can reach the configured gateway.' }
+        ? { ok: true, message: 'Blobby can reach the configured gateway.' }
         : { ok: false, message: `Gateway health check returned ${response.status}.` }
-    } catch { return { ok: false, message: 'Lappy could not reach the configured gateway.' } }
+    } catch { return { ok: false, message: 'Blobby could not reach the configured gateway.' } }
   }
 }

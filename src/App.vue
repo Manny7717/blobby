@@ -112,19 +112,19 @@ const view = computed(() => {
   const table: Record<AgentState, { title: string; caption: string; detail: string }> = {
     idle: {
       title: 'Ready when you are',
-      caption: wakeProviderStatus.value === 'ready' ? 'Say “Hey Lappy” or tap the microphone' : 'Tap the microphone to talk',
+      caption: wakeProviderStatus.value === 'ready' ? 'Say “Hey Blobby” or tap the microphone' : 'Tap the microphone to talk',
       detail: state.wakeWordEnabled ? 'Wake word active' : wakeProviderStatus.value === 'needs-model' ? 'Wake word needs a compatible model' : 'Tap to talk'
     },
     'wake-detected': { title: 'I’m here', caption: 'Go ahead', detail: 'Wake phrase detected' },
     listening: { title: 'I’m listening', caption: state.transcript ? `“${state.transcript}”` : 'Go ahead…', detail: 'Listening' },
     transcribing: { title: 'One moment', caption: state.transcript || 'Turning your voice into words…', detail: 'Transcribing' },
     submitting: { title: 'Got it', caption: state.transcript ? `“${state.transcript}”` : 'Sending your request…', detail: 'Submitting' },
-    thinking: { title: 'Thinking', caption: state.responseCaption || 'Working on that…', detail: 'Lappy  ·  thinking' },
+    thinking: { title: 'Thinking', caption: state.responseCaption || 'Working on that…', detail: 'Blobby  ·  thinking' },
     'tool-use': { title: 'Working on it', caption: state.responseCaption || 'Getting what you need…', detail: toolLine },
     browsing: { title: 'Looking that up', caption: state.responseCaption || 'Searching for the answer…', detail: toolLine || 'Browser  ·  searching' },
     speaking: { title: 'Here’s what I found', caption: state.responseCaption, detail: 'Speaking' },
     finished: { title: 'Anything else?', caption: state.responseCaption, detail: 'Finished' },
-    'camera-active': { title: 'Camera ready', caption: 'Frame only what you want Lappy to see', detail: 'Camera on' },
+    'camera-active': { title: 'Camera ready', caption: 'Frame only what you want Blobby to see', detail: 'Camera on' },
     muted: { title: 'Microphone muted', caption: 'Tap the microphone when you’re ready', detail: 'Wake word paused' },
     disconnected: { title: 'Reconnecting', caption: 'I’ll be ready when the connection returns', detail: 'Connection unavailable' },
     error: { title: 'Something went wrong', caption: state.errorMessage || 'Please try again', detail: 'Tap the microphone to retry' },
@@ -417,7 +417,7 @@ async function testConnection() {
 
 async function reconnect() {
   gateway.disconnect()
-  try { await gateway.connect(onGatewayEvent); connectionResult.value = 'Lappy is connected.' }
+  try { await gateway.connect(onGatewayEvent); connectionResult.value = 'Blobby is connected.' }
   catch (reason) { connectionResult.value = reason instanceof Error ? reason.message : 'Reconnect failed.' }
 }
 
@@ -602,7 +602,7 @@ onBeforeUnmount(() => {
     <p v-if="temperatureLabel" class="temperature" :class="{ 'temperature--hot': cpuTooHot }" aria-live="polite">{{ temperatureLabel }}</p>
     <time class="clock">{{ clock }}</time>
 
-    <section class="presence" aria-label="Lappy presence">
+    <section class="presence" aria-label="Blobby presence">
       <div class="avatar-stage">
         <HaloRing :level="meter.level.value" :active="state.state === 'listening'" :reduced-motion="reducedMotion" />
         <div
@@ -611,7 +611,7 @@ onBeforeUnmount(() => {
           :style="{ '--speech-level': speechLevel }"
           role="button"
           tabindex="0"
-          :aria-label="`Change Lappy's hat; currently ${HATS[hatIndex].label}`"
+          :aria-label="`Change Blobby's hat; currently ${HATS[hatIndex].label}`"
           @click="cycleHat"
           @keydown.enter.prevent="cycleHat"
           @keydown.space.prevent="cycleHat"
@@ -638,7 +638,7 @@ onBeforeUnmount(() => {
 
     <section class="activity" aria-live="polite">
       <div class="activity__copy">
-        <p class="wordmark">L A P P Y</p>
+        <p class="wordmark">B L O B B Y</p>
         <h1>{{ view.title }}</h1>
         <p ref="caption" class="caption" :class="{ 'caption--following': state.state === 'speaking' }">{{ view.caption }}</p>
         <p class="detail"><span v-if="state.state === 'listening' || state.state === 'speaking'" class="pulse-dot" />{{ view.detail }}</p>
@@ -699,9 +699,9 @@ onBeforeUnmount(() => {
     />
     <div v-if="exitConfirmation" class="confirm-scrim" role="dialog" aria-modal="true" aria-labelledby="exit-title">
       <div class="confirm-panel">
-        <p class="wordmark">L A P P Y</p>
+        <p class="wordmark">B L O B B Y</p>
         <h2 id="exit-title">Exit kiosk mode?</h2>
-        <p>The normal Raspberry Pi desktop will return. Lappy’s local service will keep running.</p>
+        <p>The normal Raspberry Pi desktop will return. Blobby’s local service will keep running.</p>
         <div>
           <button @click="exitConfirmation = false">Cancel</button>
           <button class="confirm-exit" @click="exitKiosk">Exit kiosk</button>

@@ -464,7 +464,7 @@ startSttDaemon()
 startWakeDaemon()
 server.listen(port, host, () => {
   // Never log environment values, request bodies, or credentials.
-  console.log(`Lappy service listening on http://${host}:${port} with ${hermes.id} adapter`)
+  console.log(`Blobby service listening on http://${host}:${port} with ${hermes.id} adapter`)
 })
 
 for (const signal of ['SIGTERM', 'SIGINT'] as const) {
@@ -481,7 +481,7 @@ for (const signal of ['SIGTERM', 'SIGINT'] as const) {
       clearTimeout(forcedExit)
       process.exit(0)
     })
-    for (const client of sockets.clients) client.close(1001, 'Lappy service restarting.')
+    for (const client of sockets.clients) client.close(1001, 'Blobby service restarting.')
     sockets.close()
   })
 }

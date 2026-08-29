@@ -28,7 +28,7 @@ export async function transcribeWithGemini(
       generation_config: {
         transcription_config: {
           language_codes: ['en-US'],
-          custom_vocabulary: ['Lappy', 'Hey Lappy'],
+          custom_vocabulary: ['Blobby', 'Hey Blobby'],
           mode: { type: 'smart' }
         }
       }

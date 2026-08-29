@@ -1,7 +1,7 @@
 import type { WakeWordProvider } from './contracts'
 
 /**
- * Honest fallback until a compatible on-device "Hey Lappy" model is installed.
+ * Honest fallback until a compatible on-device "Hey Blobby" model is installed.
  * It never opens the microphone and never claims detection succeeded.
  */
 export class UnavailableWakeWordProvider implements WakeWordProvider {

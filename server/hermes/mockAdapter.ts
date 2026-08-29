@@ -28,7 +28,7 @@ export class MockHermesAdapter implements HermesAdapter {
         emit({ type: 'tool-finish', tool })
       }
       const answer = request.imageDataUrl
-        ? 'I received the captured frame. Connect the configured Lappy gateway to analyze it.'
+        ? 'I received the captured frame. Connect the configured Blobby gateway to analyze it.'
         : `I heard “${request.text}”. The terminal is currently using its safe mock connection.`
       let complete = ''
       for (const token of answer.match(/\S+\s*/g) ?? []) {
@@ -43,5 +43,5 @@ export class MockHermesAdapter implements HermesAdapter {
   }
 
   cancel() { this.controller?.abort(); this.controller = null }
-  async testConnection() { return { ok: true, message: 'Local mock connection is ready. Add the documented gateway URL and protocol to connect Lappy.' } }
+  async testConnection() { return { ok: true, message: 'Local mock connection is ready. Add the documented gateway URL and protocol to connect Blobby.' } }
 }

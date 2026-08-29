@@ -8,7 +8,7 @@ afterEach(() => {
   document.body.replaceChildren()
 })
 
-describe('Lappy application shell', () => {
+describe('Blobby application shell', () => {
   it('mounts the idle interface and development state switcher', async () => {
     vi.doMock('@/providers/gateway', () => ({
       LocalGatewayProvider: class {
@@ -47,13 +47,13 @@ describe('Lappy application shell', () => {
     expect(host.querySelector('h1')?.textContent).toBe('Ready when you are')
     await vi.waitFor(() => expect(host.querySelector('.temperature')?.textContent).toBe('CPU 85°C · TOO HOT'))
     expect(host.textContent).toContain('Tap the microphone to talk')
-    expect(host.textContent).not.toContain('Say “Hey Lappy”')
+    expect(host.textContent).not.toContain('Say “Hey Blobby”')
     expect(host.querySelector('[aria-label="Development state previews"]')).not.toBeNull()
     expect(host.querySelectorAll('.controls button')).toHaveLength(4)
 
     ;(host.querySelector('[aria-label="Open settings"]') as HTMLButtonElement).click()
     await nextTick()
-    const settings = host.querySelector('[aria-label="Lappy settings"]') as HTMLElement
+    const settings = host.querySelector('[aria-label="Blobby settings"]') as HTMLElement
     expect(settings).not.toBeNull()
     const toggles = Array.from(settings.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
     const wakeToggle = toggles[0]

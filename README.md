@@ -4,12 +4,12 @@ Blobby is a voice-first, full-screen ambient AI terminal for a Raspberry Pi 5
 touch display. It combines the measured Bloub SVG animation engine with a
 restrained Vue UI and a localhost-only Node service for conversation, settings,
 and allow-listed hardware operations. The assistant that lives inside it is
-named **Lappy**.
+named **Blobby**.
 
 ![Blobby idle on the 1024×600 kiosk](artifacts/kiosk-final-signoff-1024x600.png)
 
 The application is usable with its safe mock gateway while the real gateway is
-offline or undocumented. It does **not** claim that “Hey Lappy” works until a
+offline or undocumented. It does **not** claim that “Hey Blobby” works until a
 compatible offline wake model is installed, and it reports unavailable physical
 hardware honestly.
 
@@ -94,13 +94,13 @@ Copy `.env.example` to `.env` and keep `.env` private.
 | --- | --- |
 | `HERMES_GATEWAY_URL` | Gateway origin supplied by the existing gateway documentation |
 | `HERMES_API_KEY` | Optional bearer credential, read only by the local service |
-| `HERMES_AGENT_NAME` | Gateway model/agent identifier; defaults to `Lappy` |
+| `HERMES_AGENT_NAME` | Gateway model/agent identifier; defaults to `Blobby` |
 | `HERMES_SESSION_ID` | Optional stable conversation/session identifier |
 | `HERMES_ADAPTER` | `mock` or `openai`; defaults to mock when no gateway URL exists |
 | `HERMES_CHAT_COMPLETIONS_PATH` | Explicit documented OpenAI-compatible streaming path |
 | `HERMES_HEALTH_PATH` | Optional documented health path |
 | `HERMES_RESPONSE_TIMEOUT_MS` | Stream inactivity deadline, clamped to 5 seconds–10 minutes; default 90 seconds |
-| `WAKE_WORD_ENABLED` | Startup preference for the idle “Hey Lappy” listener |
+| `WAKE_WORD_ENABLED` | Startup preference for the idle “Hey Blobby” listener |
 | `WAKE_WORD_PROVIDER` | `local` enables the on-device Sherpa-ONNX listener; `unavailable` disables it |
 | `CAMERA_ENABLED` | Initial camera preference; default false |
 | `STT_PROVIDER` | `gemini`, `whisper`, or `browser`; `gemini` uses the dedicated Gemini 3.5 Transcribe model |
@@ -108,7 +108,7 @@ Copy `.env.example` to `.env` and keep `.env` private.
 | `GEMINI_TRANSCRIBE_MODEL` | Defaults to the dedicated `gemini-3.5-transcribe` model |
 | `TTS_PROVIDER` | `fish-audio`, `local-espeak`, or `browser`; resolved server-side without exposing secrets |
 | `FISH_AUDIO_API_KEY` | Fish Audio bearer key; required for `fish-audio` and kept in the local service only |
-| `FISH_AUDIO_VOICE_ID` | Fish Audio `reference_id`; configured for Lappy's selected voice |
+| `FISH_AUDIO_VOICE_ID` | Fish Audio `reference_id`; configured for Blobby's selected voice |
 | `FISH_AUDIO_MODEL` | Fish Audio model request header; configured as `s2.1-pro-free` |
 | `LAPPY_HOST` / `LAPPY_PORT` | Local bind, default `127.0.0.1:4318` |
 | `LAPPY_DEBUG_RECORDING` | Must remain false unless recordings are explicitly needed |
@@ -131,7 +131,7 @@ HERMES_ADAPTER=openai
 HERMES_GATEWAY_URL=http://127.0.0.1:PORT
 HERMES_CHAT_COMPLETIONS_PATH=/the/documented/path
 HERMES_HEALTH_PATH=/the/documented/health/path
-HERMES_AGENT_NAME=Lappy
+HERMES_AGENT_NAME=Blobby
 ```
 
 The adapter parses `text/event-stream` deltas, maps known tool names to short
@@ -165,7 +165,7 @@ hold-generated click is suppressed without swallowing the next deliberate tap.
 
 ## Audio setup
 
-Lappy asks Chromium for echo cancellation, noise suppression, and automatic gain
+Blobby asks Chromium for echo cancellation, noise suppression, and automatic gain
 control. The settings drawer enumerates browser audio input/output device IDs at
 runtime; no ALSA/PipeWire device name is assumed.
 
@@ -184,7 +184,7 @@ meter is limited to roughly 30 updates per second and releases its MediaStream,
 AudioContext, listeners, and animation frame after each listen.
 
 Recorded speech is sent through the localhost service to Google's dedicated
-`gemini-3.5-transcribe` model in smart mode, with English and “Lappy” vocabulary
+`gemini-3.5-transcribe` model in smart mode, with English and “Blobby” vocabulary
 hints. The browser never receives the API key. Uploaded Gemini files are deleted
 after every request. Browser speech recognition and local Whisper remain fallback
 providers.
@@ -204,18 +204,18 @@ energy without inserting a Web Audio node into the selected output route.
 
 ## Wake-word setup
 
-With `WAKE_WORD_PROVIDER=local` and `WAKE_WORD_ENABLED=true`, Lappy streams
+With `WAKE_WORD_PROVIDER=local` and `WAKE_WORD_ENABLED=true`, Blobby streams
 16 kHz PCM frames over localhost to a Sherpa-ONNX open-vocabulary keyword
-spotter configured for “Hey Lappy.” Detection runs entirely on the Pi: idle
+spotter configured for “Hey Blobby.” Detection runs entirely on the Pi: idle
 microphone audio is not uploaded and consumes no API quota. The quantized model
 uses two CPU threads and a 160 ms acoustic chunk size. The provider releases the
-microphone before normal Gemini transcription and stays paused while Lappy
+microphone before normal Gemini transcription and stays paused while Blobby
 records or speaks, reducing self-triggering. Sensitivity changes the local
 keyword threshold and boosting score.
 
 Install the Python dependencies with `stt/.venv/bin/pip install -r
 stt/requirements.txt`. The model files live under `stt/models/` and are loaded
-by `stt/wake.py` when the Lappy service starts. The model itself is **not
+by `stt/wake.py` when the Blobby service starts. The model itself is **not
 committed** to this repository — download the
 `sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20` keyword-spotting model from the
 [sherpa-onnx releases](https://github.com/k2-fsa/sherpa-onnx/releases) and
@@ -360,7 +360,7 @@ generic filesystem or shell privileges as a workaround.
 
 ### Corrupt settings
 
-Stop Lappy, inspect the dated `settings.json.corrupt-*` backup, and restart. Safe
+Stop Blobby, inspect the dated `settings.json.corrupt-*` backup, and restart. Safe
 defaults are loaded automatically.
 
 ## Security and privacy notes

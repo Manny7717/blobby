@@ -34,7 +34,7 @@ const emit = defineEmits<{
 const draft = ref<TerminalSettings>({ ...props.settings })
 watch(() => props.settings, (settings) => { draft.value = { ...settings } }, { deep: true })
 const wakeHelp = computed(() => props.wakeProviderStatus === 'needs-model'
-  ? 'No compatible “Hey Lappy” model is installed. Tap-to-talk remains available.'
+  ? 'No compatible “Hey Blobby” model is installed. Tap-to-talk remains available.'
   : '')
 
 function save() { emit('save', { ...draft.value }) }
@@ -42,9 +42,9 @@ function save() { emit('save', { ...draft.value }) }
 
 <template>
   <div class="drawer-scrim" @click.self="emit('close')">
-    <aside class="drawer" aria-label="Lappy settings">
+    <aside class="drawer" aria-label="Blobby settings">
       <header>
-        <div><p>L A P P Y</p><h2>Settings</h2></div>
+        <div><p>B L O B B Y</p><h2>Settings</h2></div>
         <button class="round" aria-label="Close settings" @click="emit('close')"><X :size="24" /></button>
       </header>
 
@@ -102,7 +102,7 @@ function save() { emit('save', { ...draft.value }) }
 
         <section>
           <h3>Connection</h3>
-          <label>Lappy gateway URL · local config <input v-model.trim="draft.gatewayUrl" inputmode="url" placeholder="Configured in .env" readonly /></label>
+          <label>Blobby gateway URL · local config <input v-model.trim="draft.gatewayUrl" inputmode="url" placeholder="Configured in .env" readonly /></label>
           <div class="action-row">
             <button class="action" :disabled="testingConnection" @click="emit('testConnection')"><CheckCircle :size="20" /> Test connection</button>
             <button class="action" @click="emit('reconnect')"><ArrowClockwise :size="20" /> Reconnect</button>

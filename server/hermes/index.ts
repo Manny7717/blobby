@@ -14,7 +14,7 @@ export function createHermesAdapter(): HermesAdapter {
     path: process.env.HERMES_CHAT_COMPLETIONS_PATH ?? '',
     healthPath: process.env.HERMES_HEALTH_PATH,
     apiKey: process.env.HERMES_API_KEY,
-    agentName: process.env.HERMES_AGENT_NAME ?? 'Lappy',
+    agentName: process.env.HERMES_AGENT_NAME ?? 'Blobby',
     sessionId: process.env.HERMES_SESSION_ID,
     responseTimeoutMs
   })

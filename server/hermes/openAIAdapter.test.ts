@@ -18,7 +18,7 @@ function adapter() {
   return new OpenAIHermesAdapter({
     baseUrl: 'http://gateway.invalid',
     path: '/v1/chat/completions',
-    agentName: 'Lappy'
+    agentName: 'Blobby'
   })
 }
 
@@ -68,7 +68,7 @@ describe('OpenAI Hermes streaming adapter', () => {
       }
     }), { status: 200 })) as typeof fetch
     const timed = new OpenAIHermesAdapter({
-      baseUrl: 'http://gateway.invalid', path: '/v1/chat/completions', agentName: 'Lappy', responseTimeoutMs: 20
+      baseUrl: 'http://gateway.invalid', path: '/v1/chat/completions', agentName: 'Blobby', responseTimeoutMs: 20
     })
     await expect(timed.chat({ text: 'hello' }, () => undefined)).rejects.toThrow('Gateway response timed out.')
   })

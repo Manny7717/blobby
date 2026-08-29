@@ -528,7 +528,7 @@ function dotAttrs(dot: BotFrame['dots'][number]) {
     :height="props.size"
     :viewBox="`${-VB} ${-VB} ${VB * 2} ${VB * 2}`"
     role="img"
-    aria-label="Animated Lappy avatar"
+    aria-label="Animated Blobby avatar"
   >
     <defs>
       <!--

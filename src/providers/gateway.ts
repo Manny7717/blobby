@@ -39,7 +39,7 @@ export class LocalGatewayProvider implements GatewayProvider {
       }
       socket.onerror = () => {
         window.clearTimeout(timeout)
-        if (initial) reject(new Error('Cannot reach the local Lappy service.'))
+        if (initial) reject(new Error('Cannot reach the local Blobby service.'))
       }
     })
   }
@@ -63,7 +63,7 @@ export class LocalGatewayProvider implements GatewayProvider {
   }
 
   async send(request: ChatRequest) {
-    if (!this.socket || this.socket.readyState !== WebSocket.OPEN) throw new Error('Lappy is reconnecting.')
+    if (!this.socket || this.socket.readyState !== WebSocket.OPEN) throw new Error('Blobby is reconnecting.')
     this.socket.send(JSON.stringify({ type: 'chat', request }))
   }
 

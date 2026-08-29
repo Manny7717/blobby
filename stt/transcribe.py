@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local whisper STT daemon for Lappy.
+"""Local whisper STT daemon for Blobby.
 
 Binds 127.0.0.1 (no auth: the Node service is the only caller and it enforces
 the browser-origin check). POST /transcribe with raw audio bytes (webm/opus,

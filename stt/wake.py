@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local streaming "Hey Lappy" detector using sherpa-onnx.
+"""Local streaming "Hey Blobby" detector using sherpa-onnx.
 
 The browser sends 16 kHz mono int16 PCM frames through the localhost Node
 service. No microphone audio or wake inference leaves the Raspberry Pi.
@@ -22,15 +22,15 @@ MODEL = Path(os.environ.get(
     ROOT / "models" / "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20",
 ))
 KEYWORD_VARIANTS = (
-    "HH EY1 L AE1 P IY0",
-    "HH EY1 L AE1 P IY1",
-    "HH EY1 L AA1 P IY0",
-    "HH EY1 L AH0 P IY0",
+    "HH EY1 B L AA1 B IY0",
+    "HH EY1 B L AA1 B IY1",
+    "HH EY1 B L AE1 B IY0",
+    "HH EY1 B L AH0 B IY0",
     # This bilingual KWS model sometimes maps an English phrase onto its
     # acoustically equivalent pinyin tokens, especially for synthetic voices.
-    "h ēi l ā p ī",
-    "h ēi l ā d īng",
-    "h ēi l án t īng",
+    "h ēi b l ā b ī",
+    "h ēi b l ā b īng",
+    "h ēi b l án b ī",
 )
 
 spotter = None
@@ -56,7 +56,7 @@ def keyword_for_sensitivity(value: float) -> str:
     threshold = 0.22 - sensitivity * 0.20
     score = 3.0 + sensitivity * 3.0
     return "/".join(
-        f"{tokens} :{score:.2f} #{threshold:.3f} @HEY_LAPPY"
+        f"{tokens} :{score:.2f} #{threshold:.3f} @HEY_BLOBBY"
         for tokens in KEYWORD_VARIANTS
     )
 
